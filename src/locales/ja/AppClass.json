@@ -1,0 +1,5 @@
+{
+  "test": "APPClass テスト react-i18next",
+  "getValue": "App Class 価値を得る : {value}",
+  "button": "Appに移動"
+}

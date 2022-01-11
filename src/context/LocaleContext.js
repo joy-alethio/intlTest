@@ -1,9 +1,18 @@
 import React, { createContext, useState } from 'react';
 
+/**
+ * 필요한 context를 제공하기위한 IntlProvider
+ */
 import { IntlProvider } from 'react-intl';
 
+/**
+ * 번역 json 파일 모음
+ */
 import locales from '../locales';
 
+/**
+ * nested object에 대한 접근을 지원하지 않아 변환 필요
+ */
 const flattenMessages = (nestedMessages, prefix = '') => {
   return Object.keys(nestedMessages).reduce((messages, key) => {
     let value = nestedMessages[key];

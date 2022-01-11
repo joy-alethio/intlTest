@@ -1,4 +1,4 @@
-import React, { useState, useContext } from 'react';
+import React, { useContext } from 'react';
 import { Link } from 'react-router-dom';
 import logo from './logo.svg';
 import './App.css';
@@ -13,11 +13,9 @@ import { FormattedMessage, useIntl } from 'react-intl';
 
 const App = () => {
   const { state, actions } = useContext(Locale);
-  // const [lang, setLang] = useState(sessionStorage.lang);
   const intl = useIntl();
 
   const doChangeLanguage = (e) => {
-    // setLang(e.target.value);
     actions.setLocale(e.target.value);
     sessionStorage.lang = e.target.value;
   };

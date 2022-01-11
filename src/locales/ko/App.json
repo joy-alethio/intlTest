@@ -1,5 +1,5 @@
 {
-  "test": "APP 테스트 react-i18next",
+  "test": "APP 테스트 react-intl",
   "getValue": "App 값을 받아온다 : {value}",
   "button": "AppClass로 이동"
 }

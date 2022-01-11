@@ -12,11 +12,9 @@ import Locale from './context/LocaleContext';
 import { FormattedMessage, FormattedDate, injectIntl } from 'react-intl';
 
 class AppClass extends Component {
-  // state = { lang: sessionStorage.lang };
   static contextType = Locale;
 
   doChangeLanguage = (e) => {
-    // this.setState({ lang: e.target.value });
     this.context.actions.setLocale(e.target.value);
     sessionStorage.lang = e.target.value;
   };

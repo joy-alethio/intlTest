@@ -1,5 +1,5 @@
 {
-  "test": "APPClass テスト react-i18next",
+  "test": "APPClass テスト react-intl",
   "getValue": "App Class 価値を得る : {value}",
   "button": "Appに移動"
 }

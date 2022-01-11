@@ -1,9 +1,7 @@
-import React, { useState, useContext } from 'react';
+import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import logo from './logo.svg';
 import './App.css';
-
-import Locale from './context/LocaleContext';
 
 /**
  * FormattedMessage: 번역하고 싶은 부분에 사용하는 컴포넌트
@@ -12,13 +10,11 @@ import Locale from './context/LocaleContext';
 import { FormattedMessage, useIntl } from 'react-intl';
 
 const App = () => {
-  const { state, actions } = useContext(Locale);
-  // const [lang, setLang] = useState(sessionStorage.lang);
+  const [lang, setLang] = useState(sessionStorage.lang);
   const intl = useIntl();
 
   const doChangeLanguage = (e) => {
-    // setLang(e.target.value);
-    actions.setLocale(e.target.value);
+    setLang(e.target.value);
     sessionStorage.lang = e.target.value;
   };
 
@@ -27,7 +23,7 @@ const App = () => {
       <header className="App-header">
         <img src={logo} className="App-logo" alt="logo" />
         <div>
-          <select value={state.locale} onChange={(e) => doChangeLanguage(e)}>
+          <select value={lang} onChange={(e) => doChangeLanguage(e)}>
             <option value="ko">한국어</option>
             <option value="en">English</option>
             <option value="ja">日本語</option>
@@ -37,8 +33,10 @@ const App = () => {
           {/* hook 사용 / id는 번역할 object의 key */}
           {intl.formatMessage({ id: 'App.test' })}
         </div>
+        {/* date도 각 locale에 맞게 자동 변환 (intl 메소드) */}
         <div>{intl.formatDate(Date.now())}</div>
         <div>
+          {/* text에 value를 넘겨 줄 수 있음 */}
           <FormattedMessage
             id="App.getValue"
             values={{ value: 'react-intl' }}

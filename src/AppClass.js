@@ -3,8 +3,6 @@ import { Link } from 'react-router-dom';
 import logo from './logo.svg';
 import './App.css';
 
-import Locale from './context/LocaleContext';
-
 /**
  * FormattedMessage: 번역하고 싶은 부분에 사용하는 컴포넌트
  * injectIntl: 클래스형 컴포넌트에서 컴포넌트대신 text만 사용하고 싶을때 제공하는 HOC (예: placeholder 부분)
@@ -12,12 +10,10 @@ import Locale from './context/LocaleContext';
 import { FormattedMessage, FormattedDate, injectIntl } from 'react-intl';
 
 class AppClass extends Component {
-  // state = { lang: sessionStorage.lang };
-  static contextType = Locale;
+  state = { lang: sessionStorage.lang };
 
   doChangeLanguage = (e) => {
-    // this.setState({ lang: e.target.value });
-    this.context.actions.setLocale(e.target.value);
+    this.setState({ lang: e.target.value });
     sessionStorage.lang = e.target.value;
   };
 
@@ -28,7 +24,7 @@ class AppClass extends Component {
           <img src={logo} className="App-logo" alt="logo" />
           <div>
             <select
-              value={this.context.state.locale}
+              value={this.state.lang}
               onChange={(e) => this.doChangeLanguage(e)}
             >
               <option value="ko">한국어</option>
@@ -41,9 +37,11 @@ class AppClass extends Component {
             <FormattedMessage id="AppClass.test" />
           </div>
           <div>
+            {/* date도 각 locale에 맞게 자동 변환 (컴포넌트) */}
             <FormattedDate value={Date.now()} />
           </div>
           <div>
+            {/* text에 value를 넘겨 줄 수 있음 */}
             {this.props.intl.formatMessage(
               { id: 'AppClass.getValue' },
               { value: 'react-intl' },
